@@ -1,5 +1,17 @@
-clear
-clc
+% POOL_SINUSOIDAL_ARENA_DATA.m pools TRex data 
+% 
+% Files required: 
+%
+% Functions/packages required:
+% 
+
+% Author: Chris J. Dallmann 
+% Affiliation: University of Wuerzburg
+% Last revision: 12-May-2025
+
+% ------------- BEGIN CODE -------------
+
+clear, clc
 
 % Settings
 config.data_dir = 'C:\Users\Chris\Desktop\RR\sinusoidal_stimuli\';
