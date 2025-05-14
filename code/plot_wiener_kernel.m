@@ -12,10 +12,10 @@
 
 % ------------- BEGIN CODE -------------
 
-clear, clc
+%clear, clc
 
 % Load data
-load('Z:\Data\Roadrunner\Electrophysiology_treadmill\walking_data.mat')
+%load('Z:\Data\Roadrunner\Electrophysiology_treadmill\walking_data.mat')
 
 % Set parameters
 animal_id = 1;
@@ -48,7 +48,7 @@ for trial = 1:n_trials
     width = 2; % s
     sd = 0.2; % s
     scaling_factor = 2;
-    input = compute_spike_rate(input, width*sampling_rate_ephys, sd*sampling_rate_ephys, scaling_factor);
+    input = compute_spike_rate(spike_events, width*sampling_rate_ephys, sd*sampling_rate_ephys, scaling_factor);
 
     output = data(recording).translational_speed;
 
