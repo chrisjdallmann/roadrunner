@@ -9,7 +9,7 @@ Instructions on how to recreate individual figure panels are given in `code/READ
 ## Requirements 
 This repository contains Python 3 code and MATLAB code. 
 
-The Python code was tested on Windows 10 with the packages listed in `requirements.txt`. The MATLAB code was tested on Windows 10 with MATLAB R2023a.  
+The Python code was tested on Windows 10 with the packages listed in `requirements.txt`. The MATLAB code was tested on Windows 10 with MATLAB R2023a. To run the Matlab code, add the `code` folder and its subfolders to the Matlab path. 
 
 ## Installation
 The code can be run on a standard computer. Installation of the Python packages should take 10 minutes. 
