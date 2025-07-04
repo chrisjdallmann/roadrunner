@@ -8,7 +8,7 @@
 
 % Author: Chris J. Dallmann 
 % Affiliation: University of Wuerzburg
-% Last revision: 01-July-2025
+% Last revision: 04-July-2025
 
 % ------------- BEGIN CODE -------------
 
@@ -18,15 +18,16 @@
 %load('Z:\Data\Roadrunner\Electrophysiology_treadmill\walking_data.mat')
 
 % Set parameters
+ephys_parameter_name = 'spike_rate'; 
+treadmill_parameter_name = 'rotational_speed';
+correlation_window = 5; % s
+
+% Initialize variables
 animal_ids_to_include = [1,4,5,6,7,9,10,16,17,18];   
 sampling_rate_ephys = 20000; % Hz 
 sampling_rate_treadmill = 50; % Hz
 sampling_rate_reference = 1000; % Hz
-correlation_window = 10; % s
-ephys_parameter_name = 'membrane_potential'; % 'membrane_potential', 'spike_events', 'spike_rate'
-treadmill_parameter_name = 'translational_speed'; %''; % '*_speed', '*_velocity'
 
-% Initialize variables
 r_all = [];
 r_all_shuffled = [];
 recordings = 1:numel(data);
@@ -57,10 +58,8 @@ for animal_id = animal_ids_to_include
         if strcmp(ephys_parameter_name, 'spike_rate')
             % Compute spike rate
             spike_events = data(recording).spike_events;
-            width = 2; % s
-            sd = 0.2; % s
-            scaling_factor = 2;
-            ephys_data = compute_spike_rate(spike_events, width*sampling_rate_ephys, sd*sampling_rate_ephys, scaling_factor);
+            sd = 0.15; % s
+            ephys_data = ephys_compute_spike_rate(spike_events, sampling_rate_ephys, sd);
         else
             ephys_data = data(recording).(ephys_parameter_name);
         end
@@ -121,8 +120,6 @@ ylabel('r')
 
 [m,i] = max(mean(r_all,2))
 lag(i)
-
-%export_fig(gcf,'C:\Users\Chris\Desktop\figure.eps','-eps')    
 
 % % Set bins
 % bins_ephys = 1 : sampling_rate_ephys*bin_size : numel(ephys_data);

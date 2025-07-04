@@ -12,14 +12,14 @@
 
 % ------------- BEGIN CODE -------------
 
-clear
-clc
+%clear
+%clc
 
 % Load data
-load('Z:\Data\Roadrunner\ephys_walking.mat')
+%load('Z:\Data\Roadrunner\ephys_walking.mat')
 
 % Set recording
-recording = 1;
+recording = 13;
 
 % Plot data
 figure
@@ -60,7 +60,7 @@ s3 = subplot(513);
 
 s4 = subplot(514);
     plot(data(recording).time_treadmill, data(recording).translational_speed, 'k')
-    set(gca,'Color','none','XTickLabel','','ylim',[-.5,10])
+    set(gca,'Color','none','XTickLabel','','ylim',[-.5,15])
     ylabel('Translational speed (mm/s)')
     grid on
     box off
@@ -74,3 +74,7 @@ s5 = subplot(515);
     box off
 
 linkaxes([s1,s2,s3,s4,s5],'x')
+
+
+%zoom_in = [280,340];
+%set(s1,'xlim',zoom_in)

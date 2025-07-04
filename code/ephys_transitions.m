@@ -12,25 +12,28 @@
 
 % ------------- BEGIN CODE -------------
 
-%clc, clear
+% clear
+clc
 
 % Load data
 %load('Z:\Data\Roadrunner\Electrophysiology_treadmill\walking_data.mat')
 
 % Set parameters
+transition_type = 'onset';
+parameter_name = 'spike_rate'; 
+parameter_source = 'ephys'; % 'ephys', 'treadmill'
+pre_window = 1; % s
+post_window = 1; % s
+plot_type = 'time_series'; % 'mean', 'time_series'
+subtract_baseline = true;
+baseline_win = 0.5; % s, from beginning of window
+
+% Initialize variables
 animal_ids_to_include = [1,4,5,6,7,9,10,16,17,18];  
 sampling_rate_ephys = 20000; % Hz 
 sampling_rate_treadmill = 50; % Hz
 sampling_rate_reference = 1000; % Hz
-transition_type = 'onset';
-parameter_name = 'membrane_potential_smoothed'; % 'membrane_potential', 'membrane_potential_smoothed', 'spike_events', 'spike_rate', '*_speed', '*_velocity'
-parameter_source = 'ephys'; % 'ephys', 'treadmill'
-subtract_baseline = true;
-baseline_win = 0.5; % s, from beginning of window
-pre_window = 1; % s
-post_window = 1; % s
 
-% Initialize variables
 parameter_all = []; 
 recordings = 1:numel(data);
 animal_ids = [];
@@ -41,6 +44,7 @@ trials = [];
 for recording = recordings
     trials = [trials; data(recording).trial];
 end 
+time_to_transition = [];
 
 
 % Loop over animals
@@ -59,8 +63,8 @@ for animal_id = animal_ids_to_include
         if strcmp(parameter_name,'spike_rate')
             % Compute spike rate
             spike_events = data(recording).spike_events;
-            sd = 0.1; % s
-            data(recording).spike_rate = compute_spike_rate(spike_events, sampling_rate_ephys, sd);
+            sd = 0.15; % s
+            data(recording).spike_rate = ephys_compute_spike_rate(spike_events, sampling_rate_ephys, sd);
         end
         if strcmp(parameter_name,'membrane_potential_smoothed')
             width = 0.2; % s
@@ -114,10 +118,12 @@ for animal_id = animal_ids_to_include
             parameter(:,transition) = data(recording).(parameter_name)(transition_window_start:transition_window_end);
 
             % Subtract baseline (optional)
-            if strcmp(parameter_source,'ephys') && ~strcmp(parameter_name,'spike_events')
-                parameter(:,transition) = parameter(:,transition) - mean(parameter(1:baseline_win *sampling_rate_ephys,transition));
-            elseif strcmp(parameter_source,'treadmill')
-                parameter(:,transition) = parameter(:,transition) - mean(parameter(1:baseline_win *sampling_rate_treadmill,transition));
+            if subtract_baseline
+                if strcmp(parameter_source,'ephys') && ~strcmp(parameter_name,'spike_events')
+                    parameter(:,transition) = parameter(:,transition) - mean(parameter(1:baseline_win*sampling_rate_ephys,transition));
+                elseif strcmp(parameter_source,'treadmill')
+                    parameter(:,transition) = parameter(:,transition) - mean(parameter(1:baseline_win*sampling_rate_treadmill,transition));
+                end
             end
         end
 
@@ -146,14 +152,16 @@ for animal_id = animal_ids_to_include
             clearvars parameter_animal_upsampled
         end
         
-        % Compute threshold as 1.5x standard deviation of baseline (half
-        % pre window)
-        threshold = mean(std(parameter_animal(1:transition/2,:),0,2)) * 1.5;
-
+        % Compute threshold as 1.5x standard deviation of baseline 
+        threshold = mean(std(parameter_animal(1:baseline_win*sampling_rate,:),0,2)) * 1.5;
+      
         % Find time point relative to transition where mean crosses threshold 
         mean_onset = (find(mean(parameter_animal,2)>threshold,1,'first') - transition)/sampling_rate;
-        disp([num2str(animal_id),': ',num2str(mean_onset)])
+        time_to_transition = [time_to_transition; mean_onset];
     end
+
+    % Display number of transitions 
+    display(['Animal ',num2str(animal_id),': ',num2str(size(parameter_animal,2))])
 
     % Store animal data 
     if strcmp(parameter_name,'spike_events')
@@ -164,25 +172,50 @@ for animal_id = animal_ids_to_include
 end
 
 
-% Plot transition data
-figure
-hold on
-time = linspace(-pre_window,post_window,size(parameter_all,1));
-if strcmp(parameter_name,'spike_events')
-    for bout = 1:size(parameter_all,2)
-        plot(time(parameter_all(:,bout)>0), size(parameter_all,2)-bout+1, '.', 'color', [.8,.8,.8].*bout/size(parameter_all,2))
+% Plot mean before and after transition
+if strcmp(plot_type,'mean')
+    mean_before = [];
+    mean_after = [];
+    for animal_index = 1:size(parameter_all,2)
+        mean_before = [mean_before; mean(parameter_all(1:transition-1,animal_index))];
+        mean_after = [mean_after; mean(parameter_all(transition:end,animal_index))];
     end
-    plot([0,0], [0, size(parameter_all,2)+1], 'k')
-else    
-    plot(time, parameter_all)
-    plot(time, mean(parameter_all,2), 'k')
-    plot(time, mean(parameter_all,2) + std(parameter_all,0,2)/sqrt(numel(data)), 'k')
-    plot(time, mean(parameter_all,2) - std(parameter_all,0,2)/sqrt(numel(data)), 'k')
-    plot([0,0], [min(min(parameter_all))-1, max(max(parameter_all))+1], 'k')
-end
-hold off
-xlabel('Time to transition (s)')
-set(gca,'Color','none')
-ylabel('Parameter')
+    
+    figure
+    hold on
+    for animal_index = 1:size(parameter_all,2)
+        plot([0,1],[mean_before(animal_index),mean_after(animal_index)],'-k')
+    end
+    plot([0,1],[mean(mean_before), mean(mean_after)],'-k','LineWidth',3)
+    hold off
+    ylabel('Parameter')
+    xlim([-0.5,1.5])
+    ylim([0,20])
+    set(gca,'Color','none','xtick',0:1,'xticklabel',{'before','after'})
+    grid on
 
-%export_fig(gcf,'C:\Users\Chris\Desktop\figure.eps','-eps')  
+    [p, h, stats] = signrank(mean_before,mean_after);
+end
+
+% Plot mean time course aligned to transition
+if strcmp(plot_type,'time_series')
+    figure
+    hold on
+    time = linspace(-pre_window,post_window,size(parameter_all,1));
+    if strcmp(parameter_name,'spike_events')
+        for bout = 1:size(parameter_all,2)
+            plot(time(parameter_all(:,bout)>0), size(parameter_all,2)-bout+1, '.', 'color', [.8,.8,.8].*bout/size(parameter_all,2))
+        end
+        plot([0,0], [0, size(parameter_all,2)+1], 'k')
+    else    
+        plot(time, parameter_all)
+        plot(time, mean(parameter_all,2), 'k')
+        plot(time, mean(parameter_all,2) + std(parameter_all,0,2)/sqrt(numel(data)), 'k')
+        plot(time, mean(parameter_all,2) - std(parameter_all,0,2)/sqrt(numel(data)), 'k')
+        plot([0,0], [min(min(parameter_all))-1, max(max(parameter_all))+1], 'k')
+    end
+    hold off
+    xlabel('Time to transition (s)')
+    set(gca,'Color','none')
+    ylabel('Parameter')
+end
