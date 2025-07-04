@@ -96,6 +96,65 @@ sets = [1,2]
 
 
 ## Figure 2
+Figure 2a: Run `ephys_plot_recording.m`. Set `recording = 13`. The figure shows 300 s to 335 s. 
+
+Figure 2b: Run `ephys_transitions.m` with these settings:
+```
+transition_type = 'onset';
+parameter_name = 'spike_rate'; 
+parameter_source = 'ephys'; 
+pre_window = 1; 
+post_window = 1; 
+plot_type = 'mean';
+subtract_baseline = false;
+```
+Run script again with `transition_type = 'offset';`.  
+
+Figure 2c: Run `ephys_transitions.m` with these settings:
+```
+transition_type = 'onset';
+parameter_name = 'spike_rate'; 
+parameter_source = 'ephys';
+pre_window = 1; 
+post_window = 1; 
+plot_type = 'time_series'; 
+subtract_baseline = true;
+baseline_win = 0.5; 
+```
+To plot the speeds, run script again with:
+```
+transition_type = 'onset';
+parameter_source = 'treadmill';
+pre_window = 1; 
+post_window = 1; 
+plot_type = 'time_series'; 
+subtract_baseline = false;
+```
+Set `parameter_name = 'translational_speed';` or `parameter_name = 'rotational_speed';`.  
+
+Figure 2d: Run `ephys_transitions.m` with these settings:
+```
+transition_type = 'onset';
+parameter_name = 'spike_rate'; 
+parameter_source = 'ephys';
+pre_window = 1; 
+post_window = 1; 
+plot_type = 'time_series'; 
+subtract_baseline = true;
+baseline_win = 0.5; 
+```
+Plot `time_to_transition`.
+
+Figure 2e: Run `ephys_cross_correlation.m` with these settings:
+```
+ephys_parameter_name = 'spike_rate'; 
+treadmill_parameter_name = 'translational_speed'; 
+correlation_window = 5; % s
+```
+Run script again with `treadmill_parameter_name = 'rotational_speed';` 
+
+Figure 2f: Run `ephys_plot_distribution.m`.
+
 
 
 ## Figure 3
