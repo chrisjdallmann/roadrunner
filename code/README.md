@@ -69,6 +69,7 @@ Run cell `Statistics` to perform a one-way ANOVA and Tukey's HSD test.
 Figure 1f: Run `arena_analysis.ipynb`. Load `arena_rr_cschrimson_sinusoidal.csv` or `arena_empty_cschrimson_sinusoidal.csv`. Run cell `Plot mean time course for a specific intensity` with these settings:
 ```
 parameter_name = "speed" 
+animal_sex = ['female,'male']
 stimulus_duration = 5 
 pre_duration = 0 
 post_duration = 5 
@@ -189,10 +190,35 @@ To get the relative output of one group of neurons onto another, specify the res
 
 Figure 4I: To display descending neurons in the MANC connectome, open https://tinyurl.com/NeckConnective (Neuroglancer scene from Stürner et al. 2025, https://doi.org/10.1038/s41586-025-08925-z). Body IDs in cluster 1 are `20978, 21696, 22586, 26296, 13238, 12898, 11856, 12025, 10279, 11120`. Body IDs in cluster 2 are `15016, 14999, 14585, 15134, 12613, 13548`. Body IDs in cluster 3 are `21069, 190167, 14904, 13184, 13291, 16333, 154401, 16264, 17366`.
 
-## Figure S1  
 
-## Figure S2
+## Figure 5
+Figure 5b: In `gap-crossing_analysis.ipynb`, run cell `Plot probability of behavior per phase` with datasets `gap_empty_cschrimson.csv`, `gap_rr_cschrimson.csv`, and `gap_mdn_cschrimson.csv`.
 
-## Figure S3
+Figure 5c: In `gap-crossing_analysis.ipynb`, run cell `Plot cross duration`.
 
-## Figure S4  
+Figure 5d: In `gap-crossing_analysis.ipynb`, run cell `Plot latency to move`.
+
+
+
+## Extended Data Figure 1  
+Extended Data Figure 1a:
+
+Extended Data Figure 1b: Run `arena_analysis.ipynb`. Load `arena_rr_cschrimson_sinusoidal.csv`. Run cell `Plot mean time course for a specific intensity` with these settings:
+```
+parameter_name = "speed" 
+animal_sex = ['female']
+stimulus_duration = 5 
+pre_duration = 0 
+post_duration = 5 
+```
+Run script again with `animal_sex = ['male']` 
+
+## Extended Data Figure 2
+
+## Extended Data Figure 3
+
+## Extended Data Figure 4  
+
+
+## Extended Data Figure 5
+In `gap-crossing_analysis.ipynb`, run cell `Plot body lengths`.
