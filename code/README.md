@@ -1,6 +1,5 @@
-The following sections show how to recreate the figures in Dallmann et al. (2025) from data that will be available for download on Dryad. 
-
 # Datasets
+Overview of datasets in Dallmann et al. (2025).
 
 ## Arena data
 `arena_empty_cschrimson.csv`: Square-wave optogenetic activation of empty control flies at different light intensities.  
@@ -35,6 +34,7 @@ MANC connectome data (`manc_v121_*.csv`) were analyzed from version 1.2.1, which
 `gap_mdn_cschrimson.csv`: Optogenetic activation of Moonwalker Descending Neuron flies. 
 
 # Instructions for recreating figures 
+The following sections show how to recreate figures in Dallmann et al. (2025) from the datasets above.
 
 ## Figure 1
 Figure 1b: Run `flywire_plot_synapses.ipynb`.
