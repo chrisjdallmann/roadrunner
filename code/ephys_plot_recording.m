@@ -28,6 +28,8 @@ disp(data(recording).file)
 s1 = subplot(511);
     hold on
     plot(data(recording).time_ephys, data(recording).membrane_potential, 'k')
+    membrane_potential_filt = smooth(data(recording).membrane_potential, 0.02*20000);
+    plot(data(recording).time_ephys, membrane_potential_filt, 'color', [.5,.5,.5])
     plot(data(recording).time_ephys(data(recording).spike_events>0), data(recording).membrane_potential(data(recording).spike_events>0), 'mo')
     hold off
     set(gca,'Color','none','XTickLabel','','ylim',[min(data(recording).membrane_potential)-2, max(data(recording).membrane_potential)+2])
@@ -43,7 +45,7 @@ s2 = subplot(512);
     % Convolved spike rate 
     sd = 0.15; % s
     spike_rate = ephys_compute_spike_rate(spike_events, sampling_rate, sd);
-    plot(data(recording).time_ephys, spike_rate, 'k')    
+    plot(data(recording).time_ephys, spike_rate, 'k')   
 
     set(gca,'Color','none','XTickLabel','')
     ylabel('Predicted spike rate (Hz)')

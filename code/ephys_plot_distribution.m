@@ -27,6 +27,7 @@ sampling_rate_reference = 1000; % Hz
 % Initialize variables
 speed_binned = [];
 spike_rate_binned = [];
+speed_kde = [];
 recordings = 1:numel(data);
 animal_ids = [];
 lower_prctile = []; 
@@ -102,36 +103,59 @@ for animal_id = animal_ids_to_include
 
     lower_spike_rate = [lower_spike_rate, mean(spike_rate_animal(speed_animal<lower_prctile(n_animal)))];
     upper_spike_rate = [upper_spike_rate, mean(spike_rate_animal(speed_animal>upper_prctile(n_animal)))];
+
+    % Compute KDE for speed
+    [f,xi,bw] = ksdensity(speed_animal,-5:0.01:25,'Bandwidth',0.1); 
+    speed_kde = [speed_kde, f'];
+    % sum(xi.*diff([0,f]))
+
 end
 
-figure
+
 colors = parula(length(animal_ids_to_include));
-subplot(121)
+
+[~, index] = max(speed_kde);
+[~, sort_index] = sort(index,'ascend');
+
+figure
+% subplot(121)
+n_animal = 0;
+for animal_index = sort_index
+    n_animal = n_animal+1;
+    subplot(length(sort_index),1,n_animal)
     hold on
-    for animal_index = 1:length(animal_ids_to_include)
-        plot(centers_speed,speed_binned(:,animal_index),'color',colors(animal_index,:))
-    end
+    %plot(centers_speed,speed_binned(:,animal_index),'color',colors(animal_index,:))
+    plot(-5:0.01:25, speed_kde(:,animal_index),'color',colors(n_animal,:))
+    plot([lower_prctile(animal_index), lower_prctile(animal_index)],[0,max(max(speed_kde))],'color',colors(n_animal,:))
+    plot([upper_prctile(animal_index), upper_prctile(animal_index)],[0,max(max(speed_kde))],'color',colors(n_animal,:))
     set(gca,'Color','none')
-    xlabel('Speed (mm/s)')
-    grid on
-    ylim([0,0.5])
-    ylabel('Probability')
-subplot(122)
-    hold on
-    for animal_index = 1:length(animal_ids_to_include)
-        plot(centers_spike_rate,spike_rate_binned(:,animal_index),'color',colors(animal_index,:))
+    if animal_index < length(sort_index)
+        set(gca,'XTickLabel','')
     end
-    xlabel('Spike rate (Hz)')
-    set(gca,'Color','none')
-    grid on
-    ylim([0,0.5])
-    legend(cellstr(num2str(animal_ids_to_include')))
+    %grid on
+    ylim([0,max(max(speed_kde))])
+    %ylabel('Probability')
+end
+xlabel('Speed (mm/s)')
+
+
+
+% subplot(122)
+%     hold on
+%     for animal_index = 1:length(animal_ids_to_include)
+%         plot(centers_spike_rate,spike_rate_binned(:,animal_index),'color',colors(animal_index,:))
+%     end
+%     xlabel('Spike rate (Hz)')
+%     set(gca,'Color','none')
+%     grid on
+%     ylim([0,0.5])
+%     legend(cellstr(num2str(animal_ids_to_include')))
 
 
 figure
 hold on
-for i =1:10
-    plot([0,1],[lower_prctile(i),upper_prctile(i)],'-k')
+for animal_index = 1:length(animal_ids_to_include)
+    plot([0,1],[lower_prctile(animal_index),upper_prctile(animal_index)],'color',colors(animal_index,:))
 end
 plot([0,1],[mean(lower_prctile), mean(upper_prctile)],'-k','LineWidth',3)
 hold off
@@ -143,8 +167,8 @@ grid on
 
 figure
 hold on
-for i =1:10
-    plot([0,1],[lower_spike_rate(i),upper_spike_rate(i)],'-k')
+for animal_index = 1:length(animal_ids_to_include)
+    plot([0,1],[lower_spike_rate(animal_index),upper_spike_rate(animal_index)],'color',colors(animal_index,:))
 end
 plot([0,1],[mean(lower_spike_rate), mean(upper_spike_rate)],'-k','LineWidth',3)
 hold off

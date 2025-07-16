@@ -20,13 +20,13 @@ clc
 
 % Set parameters
 transition_type = 'onset';
-parameter_name = 'spike_rate'; 
+parameter_name = 'spike_events'; 
 parameter_source = 'ephys'; % 'ephys', 'treadmill'
 pre_window = 1; % s
 post_window = 1; % s
 plot_type = 'time_series'; % 'mean', 'time_series'
 subtract_baseline = true;
-baseline_win = 0.5; % s, from beginning of window
+baseline_win = 0.5; %0.5; % s, from beginning of window
 
 % Initialize variables
 animal_ids_to_include = [1,4,5,6,7,9,10,16,17,18];  
@@ -63,11 +63,11 @@ for animal_id = animal_ids_to_include
         if strcmp(parameter_name,'spike_rate')
             % Compute spike rate
             spike_events = data(recording).spike_events;
-            sd = 0.15; % s
+            sd = 0.15; % 0.15; % s
             data(recording).spike_rate = ephys_compute_spike_rate(spike_events, sampling_rate_ephys, sd);
         end
         if strcmp(parameter_name,'membrane_potential_smoothed')
-            width = 0.2; % s
+            width = 0.02; % s
             data(recording).membrane_potential_smoothed = smooth(data(recording).membrane_potential, width*sampling_rate_ephys);
         end
 
@@ -208,7 +208,7 @@ if strcmp(plot_type,'time_series')
         end
         plot([0,0], [0, size(parameter_all,2)+1], 'k')
     else    
-        plot(time, parameter_all)
+        plot(time, parameter_all, 'color', [.7,.7,.7])
         plot(time, mean(parameter_all,2), 'k')
         plot(time, mean(parameter_all,2) + std(parameter_all,0,2)/sqrt(numel(data)), 'k')
         plot(time, mean(parameter_all,2) - std(parameter_all,0,2)/sqrt(numel(data)), 'k')
