@@ -56,7 +56,7 @@ end
     plot(data(recording).time_ephys, spike_rate, 'k')   
     
     set(gca,'Color','none','XTickLabel','')
-    ylabel('Predicted spike rate (Hz)')
+    ylabel('Spike rate (Hz)')
     grid on
     box off
 
