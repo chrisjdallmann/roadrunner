@@ -1,7 +1,7 @@
 % EPHYS_SPEED_ANALYSIS.m computes speed distributions and pools spike rate for lower and upper percentiles  
 % 
 % Files required: 
-%    results.mat
+%    data.mat
 
 % Author: Chris J. Dallmann 
 % Affiliation: University of Wuerzburg

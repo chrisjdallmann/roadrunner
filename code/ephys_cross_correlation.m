@@ -1,7 +1,7 @@
 % EPHYS_CROSS_CORRELATION.m computes the cross-correlation between electrophysiology and treadmill data 
 % 
 % Files required: 
-%    results.mat
+%    data.mat
 
 % Author: Chris J. Dallmann 
 % Affiliation: University of Wuerzburg

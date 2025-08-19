@@ -1,7 +1,7 @@
 % EPHYS_TRANSITION_ANALYSIS.m aligns electrophysiology and treadmill data to movement onset or offset 
 % 
 % Files required: 
-%    result.mat
+%    data.mat
 
 % Author: Chris J. Dallmann 
 % Affiliation: University of Wuerzburg

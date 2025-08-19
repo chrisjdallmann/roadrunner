@@ -1,7 +1,7 @@
 % EPHYS_MOVEMENT_ANALYSIS.m compares electrophysiology data for moving and non-moving animals
 % 
 % Files required: 
-%    results.mat
+%    data.mat
 
 % Author: Chris J. Dallmann 
 % Affiliation: University of Wuerzburg

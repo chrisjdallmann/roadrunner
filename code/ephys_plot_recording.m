@@ -1,7 +1,7 @@
 % EPHYS_PLOT_RECORDING.m plots electrophysiology and treadmill data of a specific recording 
 % 
 % Files required: 
-%    results.mat
+%    data.mat
 
 % Author: Chris J. Dallmann 
 % Affiliation: University of Wuerzburg
