@@ -5,7 +5,7 @@
 
 % Author: Chris J. Dallmann 
 % Affiliation: University of Wuerzburg
-% Last revision: 19-August-2025
+% Last revision: 03-September-2025
 
 % ------------- BEGIN CODE -------------
 
@@ -17,7 +17,7 @@ dataset = 'treadmill_ephys_rr_gfp_flight.mat';
 load(['Z:\Data\Roadrunner\',dataset])
 
 % Set recording
-recording = 4;
+recording = 11;
 
 % Plot data
 figure

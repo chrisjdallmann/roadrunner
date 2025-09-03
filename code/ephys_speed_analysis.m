@@ -5,16 +5,16 @@
 
 % Author: Chris J. Dallmann 
 % Affiliation: University of Wuerzburg
-% Last revision: 19-August-2025
+% Last revision: 03-September-2025
 
 % ------------- BEGIN CODE -------------
 
-clear
-clc
+%clear
+%clc
 
 % Load data
-dataset = 'treadmill_ephys_rr_gfp_walking.mat';
-load(['Z:\Data\Roadrunner\',dataset])
+%dataset = 'treadmill_ephys_rr_gfp_walking.mat';
+%load(['Z:\Data\Roadrunner\',dataset])
 
 % Initialize variables
 recordings = 1:numel(data);
@@ -45,8 +45,7 @@ for n_animal = 1:numel(unique(animal_ids))
 
     % Loop over trials
     for n_trial = 1:numel(trials_animal)
-        trial = trials_animal(n_trial);
-        recording = find(animal_ids==animal_id & trials==trial);
+        recording = find(animal_ids==animal_id & trials==trials_animal(n_trial));
 
         % Get data
         speed = data(recording).translational_speed;

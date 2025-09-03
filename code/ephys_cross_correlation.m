@@ -5,7 +5,7 @@
 
 % Author: Chris J. Dallmann 
 % Affiliation: University of Wuerzburg
-% Last revision: 19-August-2025
+% Last revision: 03-September-2025
 
 % ------------- BEGIN CODE -------------
 
@@ -29,6 +29,7 @@ animal_ids = [];
 for recording = recordings
     animal_ids = [animal_ids; data(recording).animal_id];
 end 
+unique_animal_ids = unique(animal_ids);
 trials = [];
 for recording = recordings
     trials = [trials; data(recording).trial];
@@ -36,17 +37,17 @@ end
 
 
 % Loop over animals
-for n_animal = 1:numel(unique(animal_ids))
+for n_animal = 1:numel(unique_animal_ids)
+    
     % Initialize variables
-    animal_id = unique(animal_ids);
-    animal_id = animal_id(n_animal);
+    animal_id = unique_animal_ids(n_animal);
     trials_animal = trials(animal_ids==animal_id)';
     ephys_data_animal = [];
     treadmill_data_animal = [];
 
     % Loop over trials
-    for trial = trials_animal
-        recording = find(animal_ids==animal_id & trials==trial);
+    for trial = 1:numel(trials_animal)
+        recording = find(animal_ids==animal_id & trials==trials_animal(n_trial));
 
         % Get data
         ephys_data = data(recording).(ephys_parameter_name);

@@ -5,7 +5,7 @@
 
 % Author: Chris J. Dallmann 
 % Affiliation: University of Wuerzburg
-% Last revision: 19-August-2025
+% Last revision: 03-September-2025
 
 % ------------- BEGIN CODE -------------
 
@@ -13,18 +13,18 @@ clear
 clc
 
 % Load data
-dataset = 'treadmill_ephys_rr_gfp_walking.mat';
+dataset = 'treadmill_ephys_rr_gfp_flight.mat';
 load(['Z:\Data\Roadrunner\',dataset])
 
 % Set parameters
 n_transitions_min = 3;
 transition_type = 'onset';
-parameter_name = 'spike_rate'; 
+parameter_name = 'membrane_potential_smoothed'; 
 parameter_source = 'ephys'; % 'ephys', 'treadmill'
 pre_window = 1; % s
-post_window = 1; % s
+post_window = 5; % s
 plot_type = 'time_series'; % 'mean', 'time_series'
-subtract_baseline = false;
+subtract_baseline = true;
 baseline_win = 0.5; % s, from beginning of pre_window
 
 % Initialize variables
@@ -37,6 +37,7 @@ animal_ids = [];
 for recording = recordings
     animal_ids = [animal_ids; data(recording).animal_id];
 end 
+unique_animal_ids = unique(animal_ids);
 trials = [];
 for recording = recordings
     trials = [trials; data(recording).trial];
@@ -45,18 +46,16 @@ time_to_transition = [];
 
 
 % Loop over animals
-for n_animal = 1:numel(unique(animal_ids))
+for n_animal = 1:numel(unique_animal_ids)
+    
     % Initialize variables
-    animal_id = unique(animal_ids);
-    animal_id = animal_id(n_animal);
-
+    animal_id = unique_animal_ids(n_animal);
     trials_animal = trials(animal_ids==animal_id)';
     parameter_animal = [];
 
     % Loop over trials
     for n_trial = 1:numel(trials_animal)
-        trial = trials_animal(n_trial);
-        recording = find(animal_ids==animal_id & trials==trial);
+        recording = find(animal_ids==animal_id & trials==trials_animal(n_trial));
 
         % Get data
         if strcmp(parameter_name,'membrane_potential_smoothed')
@@ -125,11 +124,11 @@ for n_animal = 1:numel(unique(animal_ids))
         parameter_animal = [parameter_animal, parameter];
     end
 
-    % Display number of transitions 
-    display(['Animal ',num2str(animal_id),': ',num2str(size(parameter_animal,2))])
-
     % Store animal data 
-    if size(parameter_animal,2) >= n_transitions_min    
+    if size(parameter_animal,2) >= n_transitions_min   
+        % Display number of transitions 
+        display(['Animal ',num2str(animal_id),': ',num2str(size(parameter_animal,2))])
+
         if strcmp(parameter_name,'spike_events')
             parameter_all = [parameter_all, parameter_animal];
         else
@@ -163,7 +162,6 @@ if strcmp(plot_type,'mean')
     hold off
     ylabel('Parameter')
     xlim([-0.5,1.5])
-    ylim([0,20])
     set(gca,'Color','none','xtick',0:1,'xticklabel',{'before','after'})
     grid on
 
@@ -189,7 +187,7 @@ if strcmp(plot_type,'time_series')
         plot([0,0], [min(min(parameter_all))-1, max(max(parameter_all))+1], 'k')
     end
     hold off
-    xlabel('Time to transition (s)')
+    xlabel('Time from transition (s)')
     set(gca,'Color','none')
     ylabel('Parameter')
 end

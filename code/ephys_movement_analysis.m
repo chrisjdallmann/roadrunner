@@ -5,7 +5,7 @@
 
 % Author: Chris J. Dallmann 
 % Affiliation: University of Wuerzburg
-% Last revision: 19-August-2025
+% Last revision: 03-September-2025
 
 % ------------- BEGIN CODE -------------
 
@@ -17,7 +17,7 @@ dataset = 'treadmill_ephys_rr_gfp_flight.mat';
 load(['Z:\Data\Roadrunner\',dataset])
 
 % Set parameters
-parameter_name = 'membrane_potential_smoothed'; 
+parameter_name = 'spike_rate'; 
 
 % Initialize variables
 sampling_rate_ephys = 20000;
@@ -28,6 +28,7 @@ animal_ids = [];
 for recording = recordings
     animal_ids = [animal_ids; data(recording).animal_id];
 end 
+unique_animal_ids = unique(animal_ids);
 trials = [];
 for recording = recordings
     trials = [trials; data(recording).trial];
@@ -35,9 +36,10 @@ end
 
 
 % Loop over animals
-for n_animal = 1:numel(unique(animal_ids))
+for n_animal = 1:numel(unique_animal_ids)
+    
     % Initialize variables
-    animal_id = animal_ids(n_animal);   
+    animal_id = unique_animal_ids(n_animal);
     trials_animal = trials(animal_ids==animal_id)';
     parameter_animal_moving = [];
     parameter_animal_not_moving = [];
@@ -65,8 +67,8 @@ end
 % Plot means
 figure
 hold on
-for n_animal = 1:numel(animal_ids)
-    plot([0,1], [parameter_not_moving, parameter_moving], 'k', 'LineWidth', 0.5)
+for n_animal = 1:numel(unique_animal_ids)
+    plot([0,1], [parameter_not_moving(n_animal), parameter_moving(n_animal)], 'k', 'LineWidth', 0.5)
 end
 plot([0,1], [mean(parameter_not_moving), mean(parameter_moving)], 'k', 'LineWidth', 1.5)
 hold off
