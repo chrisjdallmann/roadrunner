@@ -46,7 +46,7 @@ for n_animal = 1:numel(unique_animal_ids)
     treadmill_data_animal = [];
 
     % Loop over trials
-    for trial = 1:numel(trials_animal)
+    for n_trial = 1:numel(trials_animal)
         recording = find(animal_ids==animal_id & trials==trials_animal(n_trial));
 
         % Get data
