@@ -204,7 +204,7 @@ Extended Data Figure 2e,f: Run `flywire_presynaptic_connectivity.ipynb`.
 
 
 ## Extended Data Figure 3
-Extended Data Figure 4b: Run `arena_analysis.ipynb`. Load `arena_rr_sparc_cschrimson.csv`. Run `Plot mean time course for a specific intensity` with these settings:
+Extended Data Figure 3b: Run `arena_analysis.ipynb`. Load `arena_rr_sparc_cschrimson.csv`. Run `Plot mean time course for a specific intensity` with these settings:
 ```
 parameter_name = "forward_velocity" 
 sets = ["Left","Right"] 
