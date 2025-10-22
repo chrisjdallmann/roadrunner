@@ -9,15 +9,15 @@
 
 % ------------- BEGIN CODE -------------
 
-clear
-clc
- 
-% Load data
-dataset = 'treadmill_ephys_rr_gfp_flight.mat';
-load(['Z:\Data\Roadrunner\',dataset])
+%clear
+%clc
+% 
+% % Load data
+%dataset = 'treadmill_ephys_rr_gfp_flight.mat';
+%load(['Z:\Data\Roadrunner\',dataset])
 
 % Set recording
-recording = 11;
+recording = 13;
 
 % Plot data
 figure
@@ -65,7 +65,7 @@ if contains(dataset,'walking') || contains (dataset,'flight')
     s4 = subplot(n_panels,1,4);
     if contains(dataset,'walking')
         plot(data(recording).time_treadmill, data(recording).translational_speed, 'k')
-        set(gca,'Color','none','XTickLabel','','ylim',[-.5,15])
+        set(gca,'Color','none','XTickLabel','','ylim',[-.5, max(data(recording).translational_speed)+1])
         ylabel('Translational speed (mm/s)')
     else
         plot(data(recording).time_ephys, data(recording).tachometer, 'k')
@@ -83,7 +83,7 @@ end
 if contains(dataset,'walking')
     s5 = subplot(n_panels,1,5);
     plot(data(recording).time_treadmill, data(recording).angular_speed, 'k')
-    set(gca,'Color','none','ylim',[-.5,300])
+    set(gca,'Color','none','ylim',[-.5, max(data(recording).angular_speed)+10])
     ylabel('Angular speed (mm/s)')
     set(gca,'Color','none')
     xlabel('Time (s)')
