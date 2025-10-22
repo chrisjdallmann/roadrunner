@@ -60,7 +60,6 @@ Figure 2a: Run `flywire_plot_neurons.ipynb`. Set `root_id = [720575940639781027]
 
 Figure 2b: Run `flywire_convergence.ipynb` with these settings:
 ```
-syn_prediction = 'princeton' 
 syn_thresh = 5
 nt_type_score_thresh = 0.62
 nt_inhibitory_effect = ['GABA','GLUT']
@@ -74,7 +73,6 @@ Figure 2c: Run `flywire_plot_neurons.ipynb`. Set `root_id = [720575940633362145,
 
 Figure 2d: Run `flywire_convergence.ipynb` with these settings:
 ```
-syn_prediction = 'princeton' 
 syn_thresh = 5
 nt_type_score_thresh = 0.62
 nt_inhibitory_effect = ['GABA','GLUT']
@@ -84,15 +82,24 @@ source_neurons = 'RR_BPN'
 ```
 To get the relative output of one group of neurons onto another, specify the respective groups in `pre_index` and `post_index` (cell `Calculate output of neurons in specific group `). For example, `pre_index = groups.index("source_1")`and `post_index = groups.index("intermediary_12")`. 
 
-Figure 2e: 
+Figure 2e: Run `flywire_convergence.ipynb` with these settings:
+```
+syn_thresh = 5
+nt_type_score_thresh = 0.62
+nt_inhibitory_effect = ['GABA','GLUT']
+shuffle = True 
+n_iterations = 10000 
+source_neurons = 'RR_BPN' 
+```
+Run cell `Plot distribution of shared output`. For RR, set `data_to_plot = shared_source_1_output`. For BPN, set `data_to_plot = shared_source_2_output`.
 
-Figure 2f: 
+Figure 2f: Same as Figure 2d. Run cell `Plot connectivity matrix`. 
 
-Figure 2g:
+Figure 2g: Same as Figure 2d. Run cell `Plot net excitation onto target nodes`. 
 
-Figure 2h:
+Figure 2h: Same as Figure 2d. Run cell `Plot net excitation onto target nodes per source`.  
 
-Figure 2i:
+Figure 2i: Run `manc_neuropil_analysis.ipynb` and `manc_neuron_analysis.iypnb`.
 
 
 ## Figure 3
@@ -178,17 +185,22 @@ Run script again with `animal_sex = ['male']`.
 
 
 ## Extended Data Figure 2
-Extended Data Figure 2a:
+Extended Data Figure 2a: Run `flywire_convergence.ipynb` with these settings:
+```
+syn_thresh = 5
+nt_type_score_thresh = 0.62
+nt_inhibitory_effect = ['GABA','GLUT']
+shuffle = False 
+n_iterations = 1 
+source_neurons = 'RR_BPN' 
+```
+Run cell `Plot super class and neurotransmitter profile of specific group of neurons`. Set `group` to `"intermediary_1_shared"` (Inter RR), `"intermediary_12"` (Inter RR+BPN), or `"intermediary_2_shared"` (Inter BPN). 
 
-Extended Data Figure 2b:
+Extended Data Figure 2b: Same as Figure 2g. 
 
-Extended Data Figure 2c:
+Extended Data Figure 2c: Same as Figure 2h. 
 
-Extended Data Figure 2d:
-
-Extended Data Figure 2e:
-
-Extended Data Figure 2f:
+Extended Data Figure 2e,f: Run `flywire_presynaptic_connectivity.ipynb`.
 
 
 ## Extended Data Figure 3
