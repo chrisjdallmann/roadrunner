@@ -10,7 +10,7 @@ Store the data in the `data` folder of this repository.
 Figure 1d: Run `arena_analysis.ipynb`. Load `arena_rr_cschrimson.csv` or `arena_empty_cschrimson.csv`. Run cell `Plot mean time course for a specific intensity` with these settings: 
 ```
 parameter_name = "speed" 
-sets = [1,2] 
+experiments = [1,2] 
 intensity = 9
 stimulus_duration = 10 
 pre_duration = 5 
@@ -20,16 +20,16 @@ post_duration = 5
 Figure 1e: Run `arena_analysis.ipynb`. Load `arena_rr_cschrimson.csv` or `arena_empty_cschrimson.csv`. Run cell `Plot trajectories for a specific intensity` with these settings: 
 ```
 intensity = 9
-sets = [1] 
+experiments = [1] 
 subtract_origin = False
 stimulus_duration = 10 
 ``` 
-Because data from different sets can have different absolute x-y-coordinates, run the cell separately for each set, using `sets = [1]` or `sets = [2]`.  
+Because data from different experiments can have different absolute x-y-coordinates, run the cell separately for each set, using `experiments = [1]` or `experiments = [2]`.  
 
 Figure 1f: Run `arena_analysis.ipynb`. Load `arena_rr_cschrimson.csv` or `arena_empty_cschrimson.csv`. Run cell `Plot mean speed per animal and intensity` with these settings:
 ```
 parameter_name = "speed"
-sets = [1,2]
+experiments = [1,2]
 ```
 Run cell `Statistics` to perform a one-way ANOVA and Tukey's HSD test.
 
@@ -47,12 +47,12 @@ Figure 1j,k: Run `walking_initiation_analysis.ipynb`. Load `treadmill_rr_cschrim
 Figure 1l: Run `arena_analysis.ipynb`. Load `arena_roadrunner_gtacr.csv` or `arena_empty_gtacr.csv`. For the left graph, run cell `Plot mean speed per animal and intensity` with these settings:
 ```
 parameter_name = "speed"
-sets = [1,2]
+experiments = [1,2]
 ```
 For the right graph, run cell `Plot mean speed per animal and repetition for a specific intensity` with these settings:
 ```
 parameter_name = "speed"
-sets = [1,2]
+experiments = [1,2]
 ```
 
 ## Figure 2
@@ -150,15 +150,15 @@ baseline_win = 0.5;
 ```
 To plot the spike rate, run script with `parameter_name = 'spike_rate';` and `subtract_baseline = false;`. 
 
-Figure 4f, right: Same as Figure 4f left, but with dataset `treadmill_ephys_rr_gfp_flight.mat`.
+Figure 4f, right: Same as Figure 4f left, but with dataset `treadmill_ephys_rr_gfp_flying.mat`.
 
 Figure 4g, left: Run `ephys_movement_analysis.m`. Load dataset `treadmill_ephys_rr_gfp_pushing.mat`. Set `parameter_name = 'spike_rate';`.
 
-Figure 4g, right: Same as Figure 4g left, but with dataset `treadmill_ephys_rr_gfp_flight.mat`.
+Figure 4g, right: Same as Figure 4g left, but with dataset `treadmill_ephys_rr_gfp_flying.mat`.
 
 
 ## Figure 5
-Figure 5a: Run `behavior_transition_analysis.ipynb`. Set `behavior_before = 'resting'`, `behavior_before = 'grooming'`, or `behavior_before = 'flight'`. 
+Figure 5a: Run `behavior_transition_analysis.ipynb`. Set `behavior_before = 'resting'`, `behavior_before = 'grooming'`, or `behavior_before = 'flying'`. 
 
 Figure 5c: In `gap-crossing_analysis.ipynb`, run cell `Plot probability of behavior per phase` with datasets `gap_empty_cschrimson.csv`, `gap_rr_cschrimson.csv`, and `gap_mdn_cschrimson.csv`.
 
@@ -169,9 +169,9 @@ Figure 5d: In `gap-crossing_analysis.ipynb`, run cell `Plot cross duration`.
 Extended Data Figure 1b: Run `arena_analysis.ipynb`. Load `arena_rr_cschrimson.csv`. Run cell `Plot mean speed per animal and intensity` with these settings:
 ```
 parameter_name = "speed"
-sets = [1]
+experiments = [1]
 ```
-Run script again with `sets = [2]`.
+Run script again with `experiments = [2]`.
 
 Figure 1c: Run `arena_analysis.ipynb`. Load `arena_rr_cschrimson_sinusoidal.csv`. Run cell `Plot mean time course for a specific intensity` with these settings:
 ```
@@ -209,19 +209,19 @@ Extended Data Figure 2g: Run `flywire_shortest_path.ipynb`.
 Extended Data Figure 3b: Run `arena_analysis.ipynb`. Load `arena_rr_sparc_cschrimson.csv`. Run `Plot mean time course for a specific intensity` with these settings:
 ```
 parameter_name = "forward_velocity" 
-sets = ["Left","Right"] 
+experiments = ["Left","Right"] 
 intensity = 9
 stimulus_duration = 10 
 pre_duration = 5 
 post_duration = 5 
 ```
-Run script again with `sets = ["Bilateral"]`, `sets = ["Empty"]`, and `parameter_name = "angular_velocity"`. 
+Run script again with `experiments = ["Bilateral"]`, `experiments = ["Empty"]`, and `parameter_name = "angular_velocity"`. 
 
 
 ## Extended Data Figure 4  
 Extended Data Figure 4a: Run `ephys_plot_recording.m`. Load dataset `pushing`. Set `recording = 1`. The figure shows 1 to 27.5 s. 
 
-Extended Data Figure 4b: Run `ephys_plot_recording.m`. Load dataset `flight`. Set `recording = 5`. The figure shows 36 to 122 s. 
+Extended Data Figure 4b: Run `ephys_plot_recording.m`. Load dataset `flying`. Set `recording = 5`. The figure shows 36 to 122 s. 
 
 
 ## Extended Data Figure 5
