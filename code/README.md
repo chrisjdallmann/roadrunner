@@ -1,7 +1,7 @@
 # Instructions for recreating figures 
 The following sections show how to recreate the figures in Dallmann et al. (2026). 
 
-The data generated for this study will be available for download from Zenodo. The FlyWire connectome data can be downloaded from [flywire.ai](https://codex.flywire.ai/api/download?dataset=fafb). Download the csv-files `Connections (Unfiltered)` as `flywire_v783_connections.csv`, `Classification` as `flywire_v783_classifications.csv`,  and `Neurotransmitter Type Predictions` as `flywire_v783_neurotransmitters.csv`.
+Data generated for this study will be available for download from Zenodo. The FlyWire connectome data can be downloaded from [flywire.ai](https://codex.flywire.ai/api/download?dataset=fafb). Download the csv-files `Connections (Unfiltered)` as `flywire_v783_connections.csv`, `Classification` as `flywire_v783_classifications.csv`,  and `Neurotransmitter Type Predictions` as `flywire_v783_neurotransmitters.csv`.
 
 Store all data in the `data` folder of this repository.   
 
@@ -189,9 +189,9 @@ Figure 2i, top: Run `flywire_plot_neurons.ipynb` with these settings:
 ```
 neurons_to_plot = 'DN_leg_cluster'  
 ```
-Run again with `neurons_to_plot = 'DN_LTct_cluster'`.
+Run script again with `neurons_to_plot = 'DN_LTct_cluster'`.
 
-Figure 2i, bottom: DNs in MANC were plotted using the Neuroglancer environment from [Stuerner et al. (2025)]: https://tinyurl.com/NeckConnective.
+Figure 2i, bottom: DNs in MANC were plotted using the Neuroglancer environment from [Stuerner et al. (2025)](https://www.nature.com/articles/s41586-025-08925-z): https://tinyurl.com/NeckConnective.
 
 
 
@@ -251,14 +251,13 @@ Figure 4a: Run `ephys_plot_recording.m` with these settings:
 dataset = `treadmill_ephys_rrn_gfp_walking.mat`;
 recording = 13;
 ```
-The figure shows 300 s to 335 s. 
+The figure shows 300-335 s. 
 
 
 Figure 4b: Run `ephys_movement_analysis.m` with these settings:
 ```
 dataset = `treadmill_ephys_rrn_gfp_walking.mat`;
 parameter_name = 'spike_rate';
-
 ```
 
 
@@ -275,7 +274,8 @@ plot_type = 'time_series';
 subtract_baseline = true;
 baseline_win = 0.5; 
 ```
-To plot the spike rate, run script with `parameter_name = 'spike_rate';` 
+To plot the spike rate, run script with `parameter_name = 'spike_rate';`.
+
 To plot the speeds, run script with `parameter_source = 'treadmill'` and `subtract_baseline = false;`. Set `parameter_name = 'translational_speed';` or `parameter_name = 'rotational_speed';`.  
 
 
@@ -286,7 +286,7 @@ ephys_parameter_name = 'spike_rate';
 treadmill_parameter_name = 'translational_speed'; 
 correlation_window = 3; 
 ```
-Run script again with `treadmill_parameter_name = 'angular_speed';` 
+Run script again with `treadmill_parameter_name = 'angular_speed';`. 
 
 
 Figure 4e: Run `ephys_speed_analysis.m` with these settings:
@@ -320,7 +320,7 @@ dataset = 'treadmill_ephys_rrn_gfp_flight.mat';
 parameter_name = 'spike_rate';
 ```
 
-Figure 4h, right: Same as Figure 4g left, but with `dataset = treadmill_ephys_rrn_gfp_pushing.mat`.
+Figure 4h, right: Same as Figure 4h left, but with `dataset = treadmill_ephys_rrn_gfp_pushing.mat`.
 
 
 ## Supplementary Figure 4  
@@ -329,7 +329,7 @@ Supplementary Figure 4a: Run `ephys_plot_recording.m` with these settings:
 dataset = 'treadmill_ephys_rrn_gfp_flight.mat';
 recording = 5;
 ```
-The figure shows 35 to 105 s. 
+The figure shows 35-105 s. 
 
 
 Supplementary Figure 4b: Run `ephys_plot_recording.m` with these settings: 
@@ -337,7 +337,7 @@ Supplementary Figure 4b: Run `ephys_plot_recording.m` with these settings:
 dataset = 'treadmill_ephys_rrn_gfp_pushing.mat';
 recording = 1;
 ```
-The figure shows 1 to 27.5 s. 
+The figure shows 1-27 s. 
 
 
 ## Figure 5
