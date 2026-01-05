@@ -5,16 +5,18 @@
 
 % Author: Chris J. Dallmann 
 % Affiliation: University of Wuerzburg
-% Last revision: 03-September-2025
+% Last revision: 04-January-2026
 
 % ------------- BEGIN CODE -------------
 
-%clear
-%clc
+clear
+clc
+
+% Settings
+dataset = 'treadmill_ephys_rrn_gfp_walking.mat';
 
 % Load data
-%dataset = 'treadmill_ephys_rr_gfp_walking.mat';
-%load(['Z:\Data\Roadrunner\',dataset])
+load(['..\data\',dataset])
 
 % Initialize variables
 recordings = 1:numel(data);
@@ -76,7 +78,6 @@ for n_animal = 1:numel(unique(animal_ids))
     % Compute KDE for speed
     [f,xi,bw] = ksdensity(speed_animal, -5:0.01:25, 'Bandwidth', 0.1);  
     speed_kde = [speed_kde, f'];
-    % sum(xi.*diff([0,f]))
 end
 
 

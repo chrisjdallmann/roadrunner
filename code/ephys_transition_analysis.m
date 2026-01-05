@@ -5,27 +5,27 @@
 
 % Author: Chris J. Dallmann 
 % Affiliation: University of Wuerzburg
-% Last revision: 03-September-2025
+% Last revision: 04-January-2026
 
 % ------------- BEGIN CODE -------------
 
 clear
 clc
 
-% Load data
-dataset = 'treadmill_ephys_rr_gfp_flight.mat';
-load(['Z:\Data\Roadrunner\',dataset])
-
-% Set parameters
+% Settings 
+dataset = 'treadmill_ephys_rrn_gfp_walking.mat';
 n_transitions_min = 3;
 transition_type = 'onset';
 parameter_name = 'membrane_potential_smoothed'; 
 parameter_source = 'ephys'; % 'ephys', 'treadmill'
-pre_window = 1; % s
-post_window = 5; % s
+pre_window = 1; % Seconds
+post_window = 1; % Seconds
 plot_type = 'time_series'; % 'mean', 'time_series'
 subtract_baseline = true;
-baseline_win = 0.5; % s, from beginning of pre_window
+baseline_win = 0.5; % Seconds, from beginning of pre_window
+
+% Load data
+load(['..\data\',dataset])
 
 % Initialize variables
 sampling_rate_ephys = 20000; % Hz 

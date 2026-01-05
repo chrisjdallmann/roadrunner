@@ -5,21 +5,21 @@
 
 % Author: Chris J. Dallmann 
 % Affiliation: University of Wuerzburg
-% Last revision: 03-September-2025
+% Last revision: 04-January-2026
 
 % ------------- BEGIN CODE -------------
 
 clear
 clc
 
-% Load data
-dataset = 'treadmill_ephys_rr_gfp_walking.mat';
-load(['Z:\Data\Roadrunner\',dataset])
-
-% Set parameters
+% Settings
+dataset = 'treadmill_ephys_rrn_gfp_walking.mat';
 ephys_parameter_name = 'spike_rate'; 
 treadmill_parameter_name = 'translational_speed';
-correlation_window = 3; % s
+correlation_window = 3; % Seconds
+
+% Load data
+load(['..\data\',dataset])
 
 % Initialize variables
 sampling_rate_ephys = 20000; % Hz 
@@ -50,6 +50,10 @@ for n_animal = 1:numel(unique_animal_ids)
         recording = find(animal_ids==animal_id & trials==trials_animal(n_trial));
 
         % Get data
+        if strcmp(ephys_parameter_name,'membrane_potential_smoothed')
+            width = 0.02; % s
+            data(recording).membrane_potential_smoothed = smooth(data(recording).membrane_potential, width*sampling_rate_ephys);
+        end
         ephys_data = data(recording).(ephys_parameter_name);
         treadmill_data = data(recording).(treadmill_parameter_name);
 
@@ -63,7 +67,7 @@ for n_animal = 1:numel(unique_animal_ids)
         treadmill_data_animal = [treadmill_data_animal; treadmill_data];
     end
 
-    % Z-score data to ensure correlation reflect similarity in shape, not
+    % Z-score data to ensure correlation reflects similarity in shape, not
     % magnitude
     ephys_data_animal = zscore(ephys_data_animal);
     treadmill_data_animal = zscore(treadmill_data_animal);
@@ -92,4 +96,4 @@ xlabel('Lag (s)')
 ylabel('r')
 
 [m,i] = max(mean(r_all,2));
-lag(i);
+lag(i)

@@ -5,22 +5,22 @@
 
 % Author: Chris J. Dallmann 
 % Affiliation: University of Wuerzburg
-% Last revision: 03-September-2025
+% Last revision: 04-January-2026
 
 % ------------- BEGIN CODE -------------
 
-%clear
-%clc
-% 
-% % Load data
-%dataset = 'treadmill_ephys_rr_gfp_flight.mat';
-%load(['Z:\Data\Roadrunner\',dataset])
+clear
+clc
+ 
+% Settings
+dataset = 'treadmill_ephys_rrn_gfp_pushing.mat';
+recording = 1;
 
-% Set recording
-recording = 13;
+% Load data
+load(['..\data\',dataset])
 
 % Plot data
-figure
+f = figure;
 disp(data(recording).experiment)
 
 if contains(dataset,'walking')
