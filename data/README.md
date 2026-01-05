@@ -1,29 +1,25 @@
 # Description of the data and file structure
-This dataset contains behavioral and electrophysiology data generated for Dallmann et al. (2025). All data are from adult _Drosophila melanogaster_.  
+This dataset contains behavioral and electrophysiology data generated for Dallmann et al. (2026). All data are from adult _Drosophila melanogaster_.  
 
 Code to recreate all figures is provided on GitHub (https://github.com/chrisjdallmann/roadrunner).
 
 
 ## Optogenetic activation and silencing data 
 ### Files
-`arena_rr_cschrimson.csv`: Square-wave optogenetic activation of RR>CsChrimson flies at different light intensities.  
-`arena_empty_cschrimson.csv`: Square-wave optogenetic activation of empty>CsChrimson flies at different light intensities.
-
-`arena_rr_cschrimson_sinusoidal.csv`: Sinusoidal optogenetic activation of RR>CsChrimson flies. 
+`arena_rrn_cschrimson.csv`: Optogenetic activation of RRN>CsChrimson flies at different light intensities.  
+`arena_empty_cschrimson.csv`: Optogenetic activation of empty>CsChrimson flies at different light intensities.
+`arena_rrn_cschrimson_sinusoidal.csv`: Sinusoidal optogenetic activation of RRN>CsChrimson flies. 
 `arena_empty_cschrimson_sinusoidal.csv`: Sinusoidal optogenetic activation of empty>CsChrimson flies. 
-
-`arena_rr_gtacr.csv`: Square-wave optogenetic silencing of RR>GtACR flies at different light intensities. 
-`arena_empty_gtacr.csv`: Square-wave optogenetic silencing of empty>GtACR flies at different light intensities. 
-
-`arena_rr_sparc_cschrimson.csv`: Square-wave optogenetic activation of RR>SPARC2-CsChrimson flies. 
-
-`treadmill_rr_cschrimson_walking_initiation.csv`: Optogenetic activation of tethered resting RR>CsChrimson flies. 
-`treadmill_rr_cschrimson_walking_initiation_control.csv`: Spontaneous walking initiation by tethered RR>CsChrimson flies.
-`treadmill_rr_cschrimson_transitions.csv`: Optogenetic activation of tethered resting, walking, grooming, and flying RR>CsChrimson flies.                             
+`arena_rrn_gtacr.csv`: Optogenetic silencing of RRN>GtACR flies at different light intensities. 
+`arena_empty_gtacr.csv`: Optogenetic silencing of empty>GtACR flies at different light intensities. 
+`arena_rrn_sparc_cschrimson.csv`: Optogenetic activation of RRN>SPARC2-CsChrimson flies. 
+`treadmill_rrn_cschrimson_walking_initiation.csv`: Optogenetic activation of tethered resting RRN>CsChrimson flies. 
+`treadmill_rrn_cschrimson_walking_initiation_control.csv`: Spontaneous walking initiation by tethered RRN>CsChrimson flies.
+`treadmill_rrn_cschrimson_transitions.csv`: Optogenetic activation of tethered resting, walking, grooming, and flying RRN>CsChrimson flies.                             
 
 ### Variables
 The csv files contain a combination of the following columns:
-`experiment`: Indicates the experimental group in which animals have been recorded (1 or 2) or how many RR neurons were targeted (bilateral, unilteral, or none).  
+`experiment`: Indicates the experimental group in which animals have been recorded (1 or 2) or how many RRNs were targeted (bilateral, unilteral, or none).  
 `intensity`: Optogenetic activation intensity in Volt. 
 `animal_id`: Animal identifier.
 `animal_sex`: Animal sex. 
@@ -32,11 +28,11 @@ The csv files contain a combination of the following columns:
 `time`: Time in seconds. 
 `n_stimulus`: Number of stimulus repetition. 
 `n_inter_stimulus_interval`: Number of stimulus interval. 
-`x`, `y`: 2D coordinates of the body center of mass.  
+`x`, `y`: Positions of the body center of mass in space.  
 `forward_velocity`: Forward velocity in millimeters per second.
 `lateral_velocity`: Lateral or side-stepping velocity in millimeters per second.
-`angular_velocity`: Angular velocity in degrees per second.
-`speed`: Translational speed of the body center of mass in mm/s.  
+`angular_velocity`: Angular velocity in degrees per second. Positive angular velocity corresponds to counterclockwise turning.
+`speed`: Translational speed of the body center of mass in millimeters per second.  
 `resting`: Binary variable indicating whether animal was resting. 
 `walking`: Binary variable indicating whether animal was walking.  
 `grooming`: Binary variable indicating whether animal was grooming.  
@@ -47,8 +43,8 @@ The csv files contain a combination of the following columns:
 
 ## Chemogenetic activation data 
 ### Files
-`treadmill_rr_p2x2.csv`: Chemogenetic activation (ATP application) of tethered RR>P2X2 flies.
-`treadmill_rr_p2x2_control.csv`: ATP application in tethered RR>GFP control flies.
+`treadmill_rrn_p2x2.csv`: Chemogenetic activation (ATP application) of tethered RRN>P2X2 flies.
+`treadmill_rrn_p2x2_control.csv`: ATP application in tethered RRN>GFP control flies.
 
 ### Variables
 The csv files contain the following columns:
@@ -62,9 +58,9 @@ The csv files contain the following columns:
 
 ## Electrophysiology data  
 ### Files
-`treadmill_ephys_rr_gfp_walking.mat`: Patch-clamp recordings of tethered walking RR>GFP flies.  
-`treadmill_ephys_rr_gfp_pushing.mat`: Patch-clamp recordings of tethered pushing RR>GFP flies. 
-`treadmill_ephys_rr_gfp_flying.mat`: Patch-clamp recordings of tethered flying RR>GFP flies.  
+`treadmill_ephys_rrn_gfp_walking.mat`: Patch-clamp recordings of tethered walking RRN>GFP flies.  
+`treadmill_ephys_rrn_gfp_pushing.mat`: Patch-clamp recordings of tethered pushing RRN>GFP flies. 
+`treadmill_ephys_rrn_gfp_flight.mat`: Patch-clamp recordings of tethered flying RRN>GFP flies.  
 
 ### Variables
 The csv files contain a combination of the following columns:
@@ -87,17 +83,17 @@ The csv files contain a combination of the following columns:
 
 ## Gap-crossing data
 ### Files
-`gap_rr_cschrimson.csv`: Optogenetic activation of RR>CsChrimson flies in the gap-crossing paradigm. 
-`gap_empty_cschrimson.csv`: Optogenetic activation of empty>CsChrimson flies in the gap-crossing paradigm. 
-`gap_mdn_cschrimson.csv`: Optogenetic activation of MDN>CsChrimson flies in the gap-crossing paradigm. 
+`gap_rrn_cschrimson.csv`: Optogenetic activation of RRN>CsChrimson flies in the gap-crossing assay. 
+`gap_empty_cschrimson.csv`: Optogenetic activation of empty>CsChrimson flies in the gap-crossing assay. 
+`gap_mdn_cschrimson.csv`: Optogenetic activation of MDN>CsChrimson flies in the gap-crossing assay. 
 
 ### Variables
 The csv files contain a combination of the following columns:
-`phase`: Phase of gap crossing. Either 0 (flies ready to cross), 1 (early crossing), 2 (mid crossing), or 3 (late crossing). 
+`phase`: Phase of gap crossing. Either `0` (flies ready to cross), `1` (early crossing), `2` (mid crossing), or `3` (late crossing). 
 `animal_id`: Animal identifier.
 `body_length`: Distance between neck and end of abdomen in millimeters.
 `trial`: Trial number.
-`behavior`: Behavior after the onset of the optogenetic light stimulus. Either none (rest), cross (climb), abort, fall, backward, or jump.
+`behavior`: Behavior Following the onset of the optogenetic stimulus. Either `none` (rest), `cross`, `turn`, `fall`, `backward`, or `jump`.
 `stimulus_onset`: Frame at which stimulus started.
 `movement_onset`: Frame at which movement started.
 `cross_start`: Frame at which cross started.
@@ -110,11 +106,10 @@ The csv files contain a combination of the following columns:
 
 ### Variables
 The csv files contains the following columns:
-`connectome`: Name of connectome dataset.
-`root_id`: Neuron identifier. 
+`connectome_dataset`: Name of connectome dataset.
+`connectome_id`: Connectome identifier of neuron. 
+`cell_type`: Cell type of neuron.
 `community_name`: Community name of neuron.
 `super_class`: Super class of neuron.
 `motor_program`: Motor program that neuron has been implicated in. 
 `motor_function`: Specific function within motor program that neuron has been implicated in. 
-`motor_function_reference`: Paper reference for motor function.
-`connectome_id_reference`: Paper reference for connectome identification. 
