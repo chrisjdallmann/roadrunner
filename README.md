@@ -1,9 +1,9 @@
 # roadrunner
 This repository contains code for recreating figures in:
 
-Dallmann CJ, Iqbal FM, Liebscher S, Erginkaya M, Liessem s, Sauer EL, Soyka H, Cascino-Milani F, Goldammer J, Ito K, Ache JM: A dedicated brain circuit controls forward walking in _Drosophila_. bioRxiv.
+Dallmann CJ, Mukthar Iqbal F, Liebscher S, Erginkaya M, Liessem s, Sauer EL, Soyka H, Cascino-Milani F, Goldammer J, Ito K, Ache JM (2026): A dedicated brain circuit controls forward walking in _Drosophila_. bioRxiv. https://doi.org/10.64898/2026.01.04.697356
 
-Data will be available for download on Dryad. 
+Data generated for this study will be available for download from Zenodo. 
 
 ## Usage
 Instructions on how to recreate individual figure panels are given in `code/README.md`.
