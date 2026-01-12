@@ -1,9 +1,11 @@
 # Instructions for recreating figures 
 The following sections show how to recreate the figures in Dallmann et al. (2026). 
 
-Data generated for this study will be available for download from Zenodo. The FlyWire connectome data can be downloaded from [flywire.ai](https://codex.flywire.ai/api/download?dataset=fafb). Download the csv-files `Connections (Unfiltered)` as `flywire_v783_connections.csv`, `Classification` as `flywire_v783_classifications.csv`,  and `Neurotransmitter Type Predictions` as `flywire_v783_neurotransmitters.csv`.
-
 Store all data in the `data` folder of this repository.   
+
+Data generated for this study will be available for download from Zenodo. 
+
+Connectome data were downloaded in June 2025. The data for FlyWire v783 can be downloaded from [flywire.ai](https://codex.flywire.ai/api/download?dataset=fafb). Download the csv-files `Connections (Unfiltered)` as `flywire_v783_connections.csv`, `Classification` as `flywire_v783_classifications.csv`,  and `Neurotransmitter Type Predictions` as `flywire_v783_neurotransmitters.csv`. The data for MANC v121 were downloaded using `manc_download_data.ipynb`. 
 
 
 ## Figure 1
