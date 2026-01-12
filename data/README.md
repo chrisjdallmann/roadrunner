@@ -1,7 +1,7 @@
 # Description of the data and file structure
-This dataset contains behavioral and electrophysiology data generated for Dallmann et al. (2026). All data are from adult _Drosophila melanogaster_.  
+The dataset generated for Dallmann et al. (2026) contains behavioral and electrophysiology data from adult _Drosophila melanogaster_.  
 
-Code to recreate all figures is provided on GitHub (https://github.com/chrisjdallmann/roadrunner).
+The data will be available for download from Zenodo. 
 
 
 ## Optogenetic activation and silencing data 
@@ -18,9 +18,9 @@ Code to recreate all figures is provided on GitHub (https://github.com/chrisjdal
 `treadmill_rrn_cschrimson_transitions.csv`: Optogenetic activation of tethered resting, walking, grooming, and flying RRN>CsChrimson flies.                             
 
 ### Variables
-The csv files contain a combination of the following columns:
+The csv-files contain a combination of the following columns:
 `experiment`: Indicates the experimental group in which animals have been recorded (1 or 2) or how many RRNs were targeted (bilateral, unilteral, or none).  
-`intensity`: Optogenetic activation intensity in Volt. 
+`intensity`: Optogenetic activation intensity in volt. 
 `animal_id`: Animal identifier.
 `animal_sex`: Animal sex. 
 `trial`: Trial number.
@@ -47,7 +47,7 @@ The csv files contain a combination of the following columns:
 `treadmill_rrn_p2x2_control.csv`: ATP application in tethered RRN>GFP control flies.
 
 ### Variables
-The csv files contain the following columns:
+The csv-files contain the following columns:
 `animal_id`: Animal identifier.
 `hemisphere`: Hemisphere in which cell body was stimulated (left or right). 
 `trial`: Trial number.
@@ -56,6 +56,7 @@ The csv files contain the following columns:
 `angular_velocity`: Angular velocity in degrees per second.
 `stimulus`: Binary variable indicating whether ATP was applied. 
 
+
 ## Electrophysiology data  
 ### Files
 `treadmill_ephys_rrn_gfp_walking.mat`: Patch-clamp recordings of tethered walking RRN>GFP flies.  
@@ -63,7 +64,7 @@ The csv files contain the following columns:
 `treadmill_ephys_rrn_gfp_flight.mat`: Patch-clamp recordings of tethered flying RRN>GFP flies.  
 
 ### Variables
-The csv files contain a combination of the following columns:
+The mat-files contain a combination of the following columns:
 `experiment`: Name of recording.
 `animal_id`: Animal identifier.
 `trial`: Trial number.
@@ -88,7 +89,7 @@ The csv files contain a combination of the following columns:
 `gap_mdn_cschrimson.csv`: Optogenetic activation of MDN>CsChrimson flies in the gap-crossing assay. 
 
 ### Variables
-The csv files contain a combination of the following columns:
+The csv-files contain a combination of the following columns:
 `phase`: Phase of gap crossing. Either `0` (flies ready to cross), `1` (early crossing), `2` (mid crossing), or `3` (late crossing). 
 `animal_id`: Animal identifier.
 `body_length`: Distance between neck and end of abdomen in millimeters.
@@ -102,10 +103,10 @@ The csv files contain a combination of the following columns:
 
 ## Connectome data
 ### Files
-`neurons_of_interest.csv`: Metadata for neurons of interest in the connectomes. 
+`neurons_of_interest.csv`: Metadata for neurons of interest in the connectomes. Same as Supplementary Table 1. 
 
 ### Variables
-The csv files contains the following columns:
+The csv-file contains the following columns:
 `connectome_dataset`: Name of connectome dataset.
 `connectome_id`: Connectome identifier of neuron. 
 `cell_type`: Cell type of neuron.
