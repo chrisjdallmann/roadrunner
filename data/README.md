@@ -1,5 +1,5 @@
 # Description of the data and file structure
-The dataset generated for Dallmann et al. (2026) contains behavioral and electrophysiology data from adult _Drosophila melanogaster_.  
+The dataset generated for Dallmann et al. (2026) contains behavioral and electrophysiological data from adult _Drosophila melanogaster_.  
 
 The data will be available for download from Zenodo. 
 
