@@ -14,7 +14,7 @@ The data will be available for download from Zenodo.
 - `arena_empty_gtacr.csv`: Optogenetic silencing of empty>GtACR flies at different light intensities. 
 - `arena_rrn_sparc_cschrimson.csv`: Optogenetic activation of RRN>SPARC2-CsChrimson flies. 
 - `treadmill_rrn_cschrimson_walking_initiation.csv`: Optogenetic activation of tethered resting RRN>CsChrimson flies. 
-- `treadmill_rrn_cschrimson_walking_initiation_control.csv`: Spontaneous walking initiation by tethered RRN>CsChrimson flies.
+- `treadmill_rrn_cschrimson_walking_initiation_control.csv`: Spontaneous walking initiation of tethered RRN>CsChrimson flies.
 - `treadmill_rrn_cschrimson_transitions.csv`: Optogenetic activation of tethered resting, walking, grooming, and flying RRN>CsChrimson flies.                             
 
 ### Variables
@@ -94,7 +94,7 @@ The csv-files contain a combination of the following columns:
 - `animal_id`: Animal identifier.
 - `body_length`: Distance between neck and end of abdomen in millimeters.
 - `trial`: Trial number.
-- `behavior`: Behavior Following the onset of the optogenetic stimulus. Either `none` (rest), `cross`, `turn`, `fall`, `backward`, or `jump`.
+- `behavior`: Behavior following the onset of the optogenetic stimulus. Either `none` (rest), `cross`, `turn`, `fall`, `backward`, or `jump`.
 - `stimulus_onset`: Frame at which stimulus started.
 - `movement_onset`: Frame at which movement started.
 - `cross_start`: Frame at which cross started.
