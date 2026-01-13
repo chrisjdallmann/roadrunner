@@ -6,22 +6,22 @@ The data will be available for download from Zenodo.
 
 ## Optogenetic activation and silencing data 
 ### Files
-`arena_rrn_cschrimson.csv`: Optogenetic activation of RRN>CsChrimson flies at different light intensities.  
-`arena_empty_cschrimson.csv`: Optogenetic activation of empty>CsChrimson flies at different light intensities.
-`arena_rrn_cschrimson_sinusoidal.csv`: Sinusoidal optogenetic activation of RRN>CsChrimson flies. 
-`arena_empty_cschrimson_sinusoidal.csv`: Sinusoidal optogenetic activation of empty>CsChrimson flies. 
-`arena_rrn_gtacr.csv`: Optogenetic silencing of RRN>GtACR flies at different light intensities. 
-`arena_empty_gtacr.csv`: Optogenetic silencing of empty>GtACR flies at different light intensities. 
-`arena_rrn_sparc_cschrimson.csv`: Optogenetic activation of RRN>SPARC2-CsChrimson flies. 
-`treadmill_rrn_cschrimson_walking_initiation.csv`: Optogenetic activation of tethered resting RRN>CsChrimson flies. 
-`treadmill_rrn_cschrimson_walking_initiation_control.csv`: Spontaneous walking initiation by tethered RRN>CsChrimson flies.
-`treadmill_rrn_cschrimson_transitions.csv`: Optogenetic activation of tethered resting, walking, grooming, and flying RRN>CsChrimson flies.                             
+- `arena_rrn_cschrimson.csv`: Optogenetic activation of RRN>CsChrimson flies at different light intensities.  
+- `arena_empty_cschrimson.csv`: Optogenetic activation of empty>CsChrimson flies at different light intensities.
+- `arena_rrn_cschrimson_sinusoidal.csv`: Sinusoidal optogenetic activation of RRN>CsChrimson flies. 
+- `arena_empty_cschrimson_sinusoidal.csv`: Sinusoidal optogenetic activation of empty>CsChrimson flies. 
+- `arena_rrn_gtacr.csv`: Optogenetic silencing of RRN>GtACR flies at different light intensities. 
+- `arena_empty_gtacr.csv`: Optogenetic silencing of empty>GtACR flies at different light intensities. 
+- `arena_rrn_sparc_cschrimson.csv`: Optogenetic activation of RRN>SPARC2-CsChrimson flies. 
+- `treadmill_rrn_cschrimson_walking_initiation.csv`: Optogenetic activation of tethered resting RRN>CsChrimson flies. 
+- `treadmill_rrn_cschrimson_walking_initiation_control.csv`: Spontaneous walking initiation by tethered RRN>CsChrimson flies.
+- `treadmill_rrn_cschrimson_transitions.csv`: Optogenetic activation of tethered resting, walking, grooming, and flying RRN>CsChrimson flies.                             
 
 ### Variables
 The csv-files contain a combination of the following columns:
-`experiment`: Indicates the experimental group in which animals have been recorded (1 or 2) or how many RRNs were targeted (bilateral, unilteral, or none).  
-`intensity`: Optogenetic activation intensity in volt. 
-`animal_id`: Animal identifier.
+- `experiment`: Indicates the experimental group in which animals have been recorded (1 or 2) or how many RRNs were targeted (bilateral, unilteral, or none).  
+- `intensity`: Optogenetic activation intensity in volt. 
+- `animal_id`: Animal identifier.
 `animal_sex`: Animal sex. 
 `trial`: Trial number.
 `frame`: Number of video frame. 
