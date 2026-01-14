@@ -218,7 +218,7 @@ Supplementary Figure 2f: Run `flywire_shortest_path.ipynb`.
 
 
 ## Figure 3
-Figure 3a: Run `flywire_plot_synapses.ipynb`.
+Figure 3a: To plot the neuron and synapses, run `flywire_plot_synapses.ipynb`. To plot the neuropils, run `flywire_plot_neuropils.ipynb`. 
 
 
 Figure 3c: Run `p2x2_analysis.ipynb`. In cells `Plot mean time series` and `Plot means of mean time series`, use either `parameter_name = "forward_velocity"` or `parameter_name = "angular_velocity"`. 
